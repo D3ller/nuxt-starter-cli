@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-starter-cli",
+  "module": "src/index.ts",
+  "type": "module",
+  "main": "dist/src/",
+  "scripts": {
+    "dev": "bun src/index.ts",
+    "build": "bun build src/**/*.ts --outdir dist --outbase src --target=node"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "bun": {
+    "target": "node"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "figlet": "^1.8.0",
+    "inquirer": "^12.4.1"
+  }
+}

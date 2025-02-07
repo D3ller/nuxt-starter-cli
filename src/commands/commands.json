@@ -1,0 +1,16 @@
+{
+  "packageManagers": {
+    "bun": "bun x nuxi@latest init",
+    "npm": "npx nuxi@latest init",
+    "yarn": "yarn dlx nuxi@latest init",
+    "pnpm": "pnpm dlx nuxi@latest init",
+    "deno": "deno run -A https://deno.land/x/nuxi@latest init"
+  },
+  "modules": {
+    "img": "@nuxt/image",
+    "fonts": "@nuxt/fonts",
+    "ui": "@nuxt/ui",
+    "content": "@nuxt/content",
+    "seo": "@nuxt/seo"
+  }
+}
