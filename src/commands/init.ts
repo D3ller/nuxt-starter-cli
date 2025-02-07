@@ -49,23 +49,10 @@ export default function (program: Command) {
                     console.log("Réponses :", answers);
 
                     const command = `${config.packageManagers[answers.moduleManager]} ${answers.projectName} --packageManager ${answers.moduleManager} --gitInit -f`;
-                    console.log(command)
                     try {
-                        console.log(`Exécution : ${command}`);
                         execSync(command, { stdio: 'inherit' });
-                        console.log(`Projet ${answers.projectName} créé avec succès !`);
-
-                        // Installation des modules sélectionnés
-                        if (answers.nuxtModules.length > 0) {
-                            execSync(`cd ${answers.projectName}`);
-                            // for (const mod of answers.nuxtModules) {
-                            //     const moduleToInstall = config.modules[mod];
-                            //     const installCommand = `npx nuxi module add ${moduleToInstall}`;
-                            //
-                            //     console.log(`Installation du module : ${installCommand}`);
-                            //     execSync(installCommand);
-                            // }
-                        }
+                        console.clear()
+                        console.log(`✨Your project ${answers.projectName} has been created !`);
                     } catch (error) {
                         console.error("Erreur lors de l'initialisation du projet :", error);
                     }
