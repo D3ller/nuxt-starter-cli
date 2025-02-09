@@ -1,11 +1,16 @@
 {
   "name": "nuxt-starter-cli",
+  "version": "1.0.1",
   "module": "src/index.ts",
   "type": "module",
   "main": "dist/src/",
+  "bin": {
+    "nuxt-starter": "dist/index.js"
+  },
   "scripts": {
     "dev": "bun src/index.ts",
-    "build": "bun build src/**/*.ts --outdir dist --outbase src --target=node"
+    "build": "bun build src/index.ts src/commands/*.ts --outdir dist --target=node",
+    "prepare": "bun build src/index.ts src/commands/init.ts src/commands/install.ts --outdir dist --target=node"
   },
   "devDependencies": {
     "@types/bun": "latest"
