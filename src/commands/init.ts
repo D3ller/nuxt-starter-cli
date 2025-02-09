@@ -27,7 +27,7 @@ export default function (program: Command) {
                         type: 'list',
                         name: 'moduleManager',
                         message: 'Which package manager would you like to use?',
-                        choices: Object.keys(config.packageManagers)
+                        choices: Object.keys(config.commandsManagers)
                     },
                     {
                         type: 'checkbox',
@@ -46,13 +46,17 @@ export default function (program: Command) {
                     }
                 ])
                 .then((answers) => {
-                    console.log("Réponses :", answers);
-
-                    const command = `${config.packageManagers[answers.moduleManager]} ${answers.projectName} --packageManager ${answers.moduleManager} --gitInit -f`;
+                    const command = `${config.commandsManagers[answers.moduleManager]} nuxi@latest init ${answers.projectName} --packageManager ${answers.moduleManager} --gitInit -f`;
                     try {
                         execSync(command, { stdio: 'inherit' });
                         console.clear()
                         console.log(`✨Your project ${answers.projectName} has been created !`);
+
+                        if(answers.nuxtModules.length > 0) {
+                            answers.nuxtModules.forEach((e : string) => {
+                                execSync(`cd ${answers.projectName} && ${config.commandsManagers[answers.moduleManager]} nuxi@latest module add ${e}`, { stdio: 'inherit' });
+                            })
+                        }
                     } catch (error) {
                         console.error("Erreur lors de l'initialisation du projet :", error);
                     }
